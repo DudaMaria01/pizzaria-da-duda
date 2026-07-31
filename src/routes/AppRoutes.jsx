@@ -1,27 +1,42 @@
-
-
-import{
+import {
+    HashRouter,
     BrowserRouter,
-    Routes, 
-    Route 
+    Routes,
+    Route
 }
 from "react-router-dom"
 import HomeFuncionario from "../pages/HomeFuncionario/HomeFuncionario"
-
-const AppRoutes = () =>{
-
+import ListarProduto from "../pages/ListarProduto/ListarProduto"
+import ListarCategoria from "../pages/ListarCategoria/ListarCategoria"
+ 
+//Browser Router : Utilize com a tag <a> com href -> sempre recarrega toda página
+//HashRouter: Utilize com a tag <link> do react-router-dom ->carrega apenas as partes necessárias d página, RECOMENDADO
+ 
+const AppRoutes = () => {
+ 
     return (
-        <BrowserRouter>
-            <Routes>
-                <Route
-                    path=""
-                    element={<HomeFuncionario/>}
-                    />
-            </Routes>
-        </BrowserRouter>
-
+        <HashRouter>
+                 <Routes>
+                            <Route
+                             path="/"
+                             element = {<HomeFuncionario/>}
+                         />
+                         <Route
+                             path="/home"
+                             element = {<HomeFuncionario/>}
+                         />
+                         <Route
+                             path="/produtos"
+                             element = {<ListarProduto/>}
+                         />
+                         <Route
+                             path="/categorias"
+                             element = {<ListarCategoria/>}
+                         />
+                 </Routes>
+        </HashRouter>
     )
-
 }
-
+ 
 export default AppRoutes
+ 
