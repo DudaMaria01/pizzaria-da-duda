@@ -106,3 +106,4 @@ const MenuFuncionario = () => {
 }
  
 export default MenuFuncionario
+ 
