@@ -1,7 +1,8 @@
 import MenuFuncionario from "../MenuFuncionario/MenuFuncionario";
+import CredentialUser from "../../components/CredentialUser";
  
 const ListarCategoria = () => {
-  const arrayProdutos = [
+  /*const arrayProdutos = [
     {
       id: 1,
       nome: "Pizza de Calabresa",
@@ -44,55 +45,19 @@ const ListarCategoria = () => {
       categoria: "Doce",
       precoVenda: 69.9,
     },
-  ];
+  ];*/
  
   return (
     <div className="container">
       <MenuFuncionario />
- 
-      <h3 className="mt-3 mb-3">Lista de Produtos</h3>
- 
-      <div className="table-responsive">
-        <table className="table table-bordered table-striped table-hover">
-          <thead className="table-success">
-            <tr>
-              <th>Nome</th>
-              <th>Categoria</th>
-              <th>Preço</th>
-              <th className="text-center">Ações</th>
-            </tr>
-          </thead>
- 
-          <tbody>
-            {arrayProdutos.map((produto) => (
-              <tr key={produto.id}>
-                <td>{produto.nome}</td>
- 
-                <td>{produto.categoria}</td>
- 
-                <td>
-                  {new Intl.NumberFormat("pt-BR", {
-                    style: "currency",
-                    currency: "BRL",
-                  }).format(produto.precoVenda)}
-                </td>
- 
-                <td className="text-center">
-                  <button className="btn btn-sm btn-primary me-2">
-                    <i className="fas fa-pencil-alt"></i>
-                  </button>
- 
-                  <button className="btn btn-sm btn-danger">
-                    <i className="fas fa-trash-alt"></i>
-                  </button>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+   <CredentialUser title="Lista de Categorias"/>
+
+    <p>Listar Categorias do Produto</p>
+      
       </div>
-    </div>
-  );
-};
+      )
+    
+    }
+  
  
 export default ListarCategoria;

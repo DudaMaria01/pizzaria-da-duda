@@ -4,6 +4,7 @@ import { Link } from "react-router-dom"
  
 import api from "../../services/api"
 import MenuFuncionario from '../MenuFuncionario/MenuFuncionario'
+import CredentialUser from "../../components/CredentialUser"
  
 const ListarProduto = () => {
  
@@ -88,6 +89,7 @@ const ListarProduto = () => {
        
         <div className='container'>
                   <MenuFuncionario/>
+                  <CredentialUser title="Lista de produtos"/>
                   <p>Lista de produtos</p>
 <div className="table-responsive">
  <table className="table table-bordered table-striped table-hover">
