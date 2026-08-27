@@ -1,24 +1,25 @@
 import React, {useState, useEffect} from "react"
-
+ 
+import { Link } from "react-router-dom"
+ 
 import api from "../../services/api"
-
-
 import MenuFuncionario from '../MenuFuncionario/MenuFuncionario'
+ 
 const ListarProduto = () => {
-
+ 
     // useState: é um hook do react que serve para armazenar e controlar o estado de uma variável
     // composição -> const [ nome da variável, função para alterar o valor da variável ] = (valor inicial da variável)
     // Obs: SEMPRE o nome da função começa com "set"
     // Exemplo: Quero declarar uma variável numero cujo valor inicia com 0
     // const[numero, setNumero] = (0)
-    
+   
     // useEffect: é um hook que serve para executar códigos que ficam fora do controle direto da renderização visual, os chamados
     //           "efeitos colaterais". Exemplo: buscar dados em API, configurar cronômetros, fazer algo quando usuário aperta uma tecla
     // composição ->  useEffect (funçao que será executada, [quando esse valor é alterado a função é chamada novamente])
     // Obs: [] manter vazio, quando você quiser seu código rode exatamente umna unica vez, geralmente ao carregar a páina
-
+ 
     const [produtos, setProdutos] = useState([])
-
+ 
     useEffect (() => {
         api
         .get ("/produtos")
@@ -27,7 +28,7 @@ const ListarProduto = () => {
             console.log(response.data.data)
             setProdutos(response.data.data)
         })
-
+ 
         .catch((error) => {
             //deu ruim :(
             console.error("Erro ao buscar a lista de produtos. " + error)
@@ -137,8 +138,19 @@ const ListarProduto = () => {
  
  
  
- </tbody>
- </table>
+            </tbody>
+        </table>
+ </div>
+ 
+ <div className="text-end mt-3">
+    <Link
+    to="/produtos/novo"
+    className={'btn btn-sucess'}
+    >
+        <i className="fas fa-plus"></i>
+        Novo Produto
+    </Link>
+ 
  </div>
         </div>
     )

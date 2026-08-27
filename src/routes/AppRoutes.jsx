@@ -9,6 +9,7 @@ import HomeFuncionario from "../pages/HomeFuncionario/HomeFuncionario"
 import MenuFuncionario from "../pages/MenuFuncionario/MenuFuncionario"
 import ListarProduto from "../pages/ListarProduto/ListarProduto"
 import ListarCategoria from "../pages/ListarCategoria/ListarCategoria"
+import NovoProduto from "../pages/NovoProduto/NovoProduto"
 
 const AppRoutes = () =>{
 
@@ -35,7 +36,10 @@ const AppRoutes = () =>{
                     element={<ListarCategoria/>}
                     />
 
-                  
+                  <Route
+                  path="/produtos/novo"
+                  element = {<NovoProduto/>}
+                  />
             </Routes>
         </BrowserRouter>
 
