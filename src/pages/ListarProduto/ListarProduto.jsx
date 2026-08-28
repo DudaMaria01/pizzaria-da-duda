@@ -5,6 +5,7 @@ import { Link } from "react-router-dom"
 import api from "../../services/api"
 import MenuFuncionario from '../MenuFuncionario/MenuFuncionario'
 import CredentialUser from "../../components/CredentialUser"
+import Modal from "../../components/Modal"
  
 const ListarProduto = () => {
  
@@ -20,6 +21,9 @@ const ListarProduto = () => {
     // Obs: [] manter vazio, quando você quiser seu código rode exatamente umna unica vez, geralmente ao carregar a páina
  
     const [produtos, setProdutos] = useState([])
+
+    const [isModalOpen, setIsModalOpen] = useState (false)
+    const [idProdutoAExcluir, setIdProdutoAExcluir] = useState  (null)
  
     useEffect (() => {
         api
@@ -34,7 +38,27 @@ const ListarProduto = () => {
             //deu ruim :(
             console.error("Erro ao buscar a lista de produtos. " + error)
         })
-    })
+    }, [])
+
+    const openModal = (id) => {
+        setIdProdutoAExcluir (id)
+        setIsModalOpen (true)
+    }
+
+    const deleteProduto = async () => {
+        try {
+            const response = await api.delete (`/produtos/${idProdutoAExcluir}`)
+            alert (response.data.message)
+
+            setProdutos ((produtosAtuais) =>
+              produtosAtuais.filter (
+                (produto) => produto.id !== idProdutoAExcluir
+              )
+            )
+        } catch (error) {
+            alert (`Não foi possível a exclusão do produto com o id ${idProdutoAExcluir}`)
+        }
+    }
  
    /* const arrayProdutos = [
         {
@@ -118,21 +142,26 @@ const ListarProduto = () => {
  
  
  </td>
- <td style={{ fontSize: "13px" }}>{produto.descricao}</td>
- <td className="text-center fs-6" style={{ width: "100px" }}>
- {/* Botão de Editar */}
- <button
- className="btn btn-sm btn-primary me-2">
- <i className="fas fa-pencil-alt"></i>{" "}
- {/* Ícone de editar */}
- </button>
- {/* Botão de Excluir */}
- <button
- className="btn btn-sm btn-danger">
- <i className="fas fa-trash-alt"></i>{" "}
- {/* Ícone de excluir */}
- </button>
- </td>
+         <td style={{ fontSize: "13px" }}>{produto.descricao}</td>
+         <td className="text-center fs-6" style={{ width: "100px" }}>
+
+             {/* Botão de Editar */}
+
+              <button
+                className="btn btn-sm btn-primary me-2">
+                <i className="fas fa-pencil-alt"></i>{" "}
+              {/* Ícone de editar */}
+              </button>
+
+              {/* Botão de Excluir */}
+             <button
+                className="btn btn-sm btn-danger"
+                onClick={() => openModal (produto.id)}>
+                <i className="fas fa-trash-alt"></i>{" "}
+              {/* Ícone de excluir */}
+
+             </button>
+       </td>
  </tr>
  
    ) ) }
@@ -154,6 +183,12 @@ const ListarProduto = () => {
     </Link>
  
  </div>
+
+ <Modal
+    isOpen = {isModalOpen}
+    onClose = {() => setIsModalOpen (false)}
+    onConfirm = {deleteProduto}
+ />
         </div>
     )
 }
