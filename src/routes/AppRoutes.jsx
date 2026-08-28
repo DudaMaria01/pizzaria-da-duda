@@ -10,6 +10,7 @@ import MenuFuncionario from "../pages/MenuFuncionario/MenuFuncionario"
 import ListarProduto from "../pages/ListarProduto/ListarProduto"
 import ListarCategoria from "../pages/ListarCategoria/ListarCategoria"
 import NovoProduto from "../pages/NovoProduto/NovoProduto"
+import EditarProduto from "../pages/EditarProduto/EditarProduto"
 
 const AppRoutes = () =>{
 
@@ -40,7 +41,14 @@ const AppRoutes = () =>{
                   path="/produtos/novo"
                   element = {<NovoProduto/>}
                   />
+
+                  <Route
+                  path = "/produtos/editar/:id"
+                  element={<EditarProduto/>}
+                  />
+                  
             </Routes>
+
         </BrowserRouter>
 
     )

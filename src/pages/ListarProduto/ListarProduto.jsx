@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from "react"
  
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
  
 import api from "../../services/api"
 import MenuFuncionario from '../MenuFuncionario/MenuFuncionario'
@@ -24,6 +24,8 @@ const ListarProduto = () => {
 
     const [isModalOpen, setIsModalOpen] = useState (false)
     const [idProdutoAExcluir, setIdProdutoAExcluir] = useState  (null)
+
+    const navigate = useNavigate ();
  
     useEffect (() => {
         api
@@ -148,7 +150,10 @@ const ListarProduto = () => {
              {/* Botão de Editar */}
 
               <button
-                className="btn btn-sm btn-primary me-2">
+                className="btn btn-sm btn-primary me-2"
+                onClick={() => 
+                    navigate (`/produtos/editar/${produto.id}`)
+                }>
                 <i className="fas fa-pencil-alt"></i>{" "}
               {/* Ícone de editar */}
               </button>
